@@ -103,4 +103,19 @@ table 123456701 "Seminar"
         "Last Date Modified":=Today;
     end;
 
+    trigger OnDelete();
+    begin
+        CommentLine.Reset;
+        CommentLine.SetRange("Table Name",123456701); //Seminar
+        CommentLine.SetRange("No.","No.");
+        CommentLine.DeleteAll;
+    end;
+
+    trigger OnValidate();
+    begin
+        if("Search Name"=UpperCase(xRec.Name)) or
+        ("Search Name"='') then
+        "Search Name":=Name;
+    end;
+
 }
