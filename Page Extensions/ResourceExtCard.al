@@ -15,30 +15,23 @@ pageextension 123456700 ResourceCardExt extends "Resource Card"
             field("Resource Type"; "Resource Type")
             {
             }
-        {
-            Addafter("Personal Data")
         }
+        Addafter("Personal Data")
         {
-            group("room")
 
-            }
-                field("Quantity Per Day"; "Quantity Per Day")
-            {
-                Visible = ShowMaxField;
-            }
-        }
-        addlast("Personal Data")
-        {
             group("Room")
             {
-                field("Maximum Participants"; "Maximum Participants")
-
+                field("Quantity Per Day"; "Quantity Per Day")
+                {
+                    Visible = ShowMaxField;
+                }
+            }
+            field("Maximum Participants"; "Maximum Participants")
+            {
             }
         }
+
     }
-
-
-
 
     var
 
