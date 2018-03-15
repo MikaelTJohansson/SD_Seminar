@@ -1,0 +1,23 @@
+{
+  "id": "5af8dcf8-49a4-420c-a27a-ba82a0837f68",
+  "name": "SD_Seminar",
+  "publisher": "Mikael Johansson",
+  "brief": "Testing123 Testing extension",
+  "description": "",
+  "version": "1.0.0.0",
+  "compatibilityId": "1.0.0.0",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "https://hereisthehelp.com/help.html",
+  "url": "",
+  "logo": "",
+  "capabilities": [],
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "11.0.0.0",
+  "application": "11.0.0.0",
+  "idRange": {
+    "from": 123456700,
+    "to": 123456799
+  }
+}
