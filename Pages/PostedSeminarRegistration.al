@@ -1,9 +1,13 @@
-page 123456710 "Seminar Registration"
+page 123456734 "Posted Seminar Registration"
 {
+    // CSD1.00 - 2018-01-01 - D. E. Veloper
+    //   Chapter 7 - Lab 3
+    //     - Created new page
+
     Caption = 'Seminar Registration';
+    Editable = false;
     PageType = Document;
-    SourceTable = "Seminar Registration Header";
-    UsageCategory = tasks;
+    SourceTable = Table123456718;
 
     layout
     {
@@ -13,12 +17,6 @@ page 123456710 "Seminar Registration"
             {
                 field("No.";"No.")
                 {
-                    AssistEdit=true;
-                    trigger OnAssistEdit();
-                    begin
-                        if AssistEdit(xRec) then
-                          CurrPage.UPDATE;
-                    end;
                 }
                 field("Starting Date";"Starting Date")
                 {
@@ -54,9 +52,13 @@ page 123456710 "Seminar Registration"
                 {
                 }
             }
+            part(SeminarRegistrationLines;123456735)
+            {
+                SubPageLink = Document No.=FIELD(No.);
+            }
             group("Seminar Room")
             {
-                field("Room Resource Code";"Room Resource Code")
+                field("Room Resource No.";"Room Resource No.")
                 {
                 }
                 field("Room Name";"Room Name")
@@ -96,14 +98,19 @@ page 123456710 "Seminar Registration"
         }
         area(factboxes)
         {
-            part("Seminar Details FactBox";"Seminar Details FactBox")
+            part(;123456717)
             {
-                SubPageLink="No."=field("Seminar No."); 
+                SubPageLink = No.=FIELD(Seminar No.);
             }
-            systempart("Links";Links)
+            part(;9084)
+            {
+                Provider = SeminarRegistrationLines;
+                SubPageLink = No.=FIELD(Bill-to Customer No.);
+            }
+            systempart(;Links)
             {
             }
-            systempart("Notes";Notes)
+            systempart(;Notes)
             {
             }
         }
@@ -121,15 +128,15 @@ page 123456710 "Seminar Registration"
                     Caption = 'Co&mments';
                     Image = Comment;
                     RunObject = Page 123456706;
-                    RunPageLink = "No."=Field("No.");
-                    RunPageView = where("Table Name"=const("Seminar Registration"));
+                    RunPageLink = No.=FIELD(No.);
+                    RunPageView = WHERE(Document Type=CONST(Posted Seminar Registration));
                 }
                 action("&Charges")
                 {
                     Caption = '&Charges';
                     Image = Costs;
-                    RunObject = Page 123456724;
-                    RunPageLink = "Document No."=Field("No.");
+                    RunObject = Page 123456739;
+                    RunPageLink = Document No.=FIELD(No.);
                 }
             }
         }
