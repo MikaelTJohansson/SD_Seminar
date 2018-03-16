@@ -90,6 +90,7 @@ table 123456701 "Seminar"
             SeminarSetup.get;
             SeminarSetup.TestField("Seminar Nos.");
             NoSeriesMgt.InitSeries(SeminarSetup."Seminar Nos.",xRec."No. Series",0D,"No.","No. Series");
+            Nos.",xRec."No. Series",0D,"No.","No.Series");
         end;
     end;
 
@@ -116,6 +117,17 @@ table 123456701 "Seminar"
         if("Search Name"=UpperCase(xRec.Name)) or
         ("Search Name"='') then
         "Search Name":=Name;
+    end;
+    trigger OnValidate();
+    begin
+        if(xRec."Gen. Prod. Posting Group"<>
+        "Gen Prod. Posting Group") then begin
+            if GenProdPostingGroup.ValidateVatProdPostingGroup
+            (GenProdPostingGroup, "VAT Prod. Posting Group") then
+        Validate ("VAT Prod. Posting Group",
+        GenProdPostingGroup. "Def. VAT Prod. Posting Group");
+        end;
+          
     end;
 
 }
