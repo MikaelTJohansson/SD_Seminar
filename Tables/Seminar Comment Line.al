@@ -1,5 +1,6 @@
 table 123456704 "Seminar Comment Line"
-
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+// Chapter 5 - Lab 2-1
 {
     Caption='Seminar Comment Line';
     LookupPageId = "Seminar Comment List";
@@ -20,8 +21,7 @@ table 123456704 "Seminar Comment Line"
         field(30;"No.";Code[20])
         {
             Caption='No.';
-            TableRelation=if ("Table Name"=CONST(Seminar)) "Seminar"
-            else if ("Table Name"=const("Seminar Registration")) "Seminar Registration Header";
+            TableRelation=if ("Table Name"=CONST(Seminar)) "Seminar";
         }
         field(40;"Line No.";Integer)
         {
@@ -48,16 +48,4 @@ table 123456704 "Seminar Comment Line"
             Clustered = true;
         }
     }
-procedure SetupNewLine()
-var
-    SeminarCommentLine: Record "Seminar Comment Line";
-
-begin
-    SeminarCommentLine.SetRange("TableName","Table Name");
-    SeminarCommentLine.SetRange("No.","No.");
-    SeminarCommentLine.SetRange("Document Line No.","Document Line No.");
-    SeminarCommentLine.SetRange("Date","WorkDate");
-    if SeminarCommentLine.IsEmpty then
-    Date:=WorkDate;
-end;    
 }

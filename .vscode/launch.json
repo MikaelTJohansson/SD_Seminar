@@ -4,12 +4,10 @@
         {
             "type": "al",
             "request": "launch",
-            "name": "Localhost",
+            "name": "localhost",
             "server": "http://localhost",
-            "serverInstance": "DynamicsNAV110",
-            "authentication": "Windows",
-            "schemaUpdateMode": "Synchronize"
-        }   // "schemaUpdateMode": "Synchronize"
-        
+            "serverInstance": "Dynamicsnav110",
+            "authentication": "Windows"
+        }
     ]
 }
