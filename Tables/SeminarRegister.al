@@ -40,7 +40,7 @@ table 123456733 "Seminar Register"
 
             trigger OnLookup();
             var
-                UserMgt : Codeunit "418";
+                UserMgt : Codeunit "User Management";
             begin
                 UserMgt.LookupUserID("User ID");
             end;
@@ -66,10 +66,6 @@ table 123456733 "Seminar Register"
         key(Key3;"Source Code","Journal Template Name","Creation Date")
         {
         }
-    }
-
-    fieldgroups
-    {
     }
 }
 

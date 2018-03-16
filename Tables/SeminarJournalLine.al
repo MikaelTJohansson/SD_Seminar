@@ -24,6 +24,10 @@ table 123456731 "Seminar Journal Line"
         field(4;"Posting Date";Date)
         {
             Caption = 'Posting Date';
+            trigger OnValidate();
+            begin
+                Validate("Document Date","Posting Date");
+            end;
         }
         field(5;"Document Date";Date)
         {
@@ -121,7 +125,7 @@ table 123456731 "Seminar Journal Line"
         field(31;"Source No.";Code[20])
         {
             Caption = 'Source No.';
-            TableRelation = IF (Source Type=CONST(Seminar)) Seminar;
+            TableRelation = IF ("Source Type"=CONST(Seminar)) Seminar;
         }
         field(32;"Journal Batch Name";Code[10])
         {
@@ -155,5 +159,9 @@ table 123456731 "Seminar Journal Line"
     fieldgroups
     {
     }
+procedure Emptyline() : Boolean;
+begin
+    exit(("Seminar No."= '') AND (Quantity= 0));
+end;
 }
 
