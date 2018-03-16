@@ -129,5 +129,18 @@ table 123456701 "Seminar"
         end;
           
     end;
-
+procedure AssistEdit() : Boolean;
+begin
+    with Seminar do begin
+        Seminar:=Rec;
+        SeminartSetup.get;
+        SeminarSetup.Testfield("Seminar Nos.");
+        if NoSeriesMgt.SelectSeries(SeminarSetup."Seminar Nos."
+        ,xRec. "No.Series","No.Series") then begin
+        NoSeriesMgt.SetSeries("No.");
+        Rec.=Seminar;
+        exit(true);
+        end;
+    end;
+end;
 }
