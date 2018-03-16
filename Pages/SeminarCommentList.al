@@ -1,7 +1,7 @@
 page 123456707 "Seminar Comment List"
 
 {
-    Caption='Seminar Comment List';
+    Caption = 'Seminar Comment List';
     PageType = List;
     SourceTable = "Seminar Comment Line";
     UsageCategory= Tasks;
@@ -21,9 +21,9 @@ page 123456707 "Seminar Comment List"
                     Visible=false;
                 }
                 field(Comment;Comment)
-                {
+                {    
                 }
             }
         }
-    }    
+    }
 }
