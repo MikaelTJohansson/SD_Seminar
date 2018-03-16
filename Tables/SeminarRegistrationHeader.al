@@ -1,10 +1,5 @@
 table 123456710 "Seminar Registration Header"
 {
-    // CSD1.00 - 2018-01-01 - D. E. Veloper
-    //   Chapter 6 - Lab 1-3 & Lab 1-4
-    //     - Created new table
-
-
     Caption = 'Seminar Registration Header';
 
     fields
@@ -113,7 +108,7 @@ table 123456710 "Seminar Registration Header"
 
             trigger OnValidate();
             begin
-                if "Room Code" = '' then begin
+                if "Room Resource Code" = '' then begin
                   "Room Name" := '';
                   "Room Address" := '';
                   "Room Address 2" := '';
@@ -122,7 +117,7 @@ table 123456710 "Seminar Registration Header"
                   "Room County" := '';
                   "Room Country/Reg. Code" := '';
                 end else begin
-                  SeminarRoom.GET("Room Code");
+                  SeminarRoom.GET("Room Resource Code");
                   "Room Name" := SeminarRoom.Name;
                   "Room Address" := SeminarRoom.Address;
                   "Room Address 2" := SeminarRoom."Address 2";
@@ -206,8 +201,7 @@ table 123456710 "Seminar Registration Header"
                     if Confirm(Text005,false,
                          FieldCaption("Seminar Price"),
                          SeminarRegLine.TableCaption)
-                    then begin
-                      repeat
+                    then repeat
                         SeminarRegLine.VALIDATE("Seminar Price","Seminar Price");
                         SeminarRegLine.modify;
                       until SeminarRegLine.NEXT = 0;
@@ -296,7 +290,7 @@ table 123456710 "Seminar Registration Header"
         key(PK;"No.")
         {
         }
-        key(Key2;"Room Code")
+        key(Key2;"Room Resource No.")
         {
             SumIndexFields = Duration;
         }
@@ -320,6 +314,8 @@ table 123456710 "Seminar Registration Header"
 
     trigger OnDelete();
     begin
+        if(CurrFieldNo>0) then
+            Testfield(Status,Status::Cancelled);
         SeminarRegLine.RESET;
         SeminarRegLine.SETRANGE("Document No.","No.");
         SeminarRegLine.SETRANGE(Registered,true);
@@ -350,13 +346,19 @@ table 123456710 "Seminar Registration Header"
           SeminarSetup.TestField("Seminar Registration Nos.");
           NoSeriesMgt.InitSeries(SeminarSetup."Seminar Registration Nos.",xRec."No. Series",0D,"No.","No. Series");
         end;
-
-        if "Posting Date" = 0D then
-          "Posting Date" := WORKDATE;
-        "Document Date" := WORKDATE;
-        SeminarSetup.GET;
-        NoSeriesMgt.SetDefaultSeries("Posting No. Series",SeminarSetup."Posted Seminar Reg. Nos.");
+        initrecord;
+        if GetFilter("Seminar No.") <>'' then
+            if GetRangeMin("Seminar No.") = GetRangeMax("Seminar No.") then
+                Validate("Seminar No.",GetRangeMin("Seminar No."));
     end;
+    Local procedure InitRecord();
+        Begin
+            if "Posting Date" = 0D then
+                "Posting Date" := WORKDATE;
+            "Document Date" := WORKDATE;
+            SeminarSetup.GET;
+            NoSeriesMgt.SetDefaultSeries("Posting No. Series",SeminarSetup."Posted Seminar Reg. Nos.");
+        end;
 
     procedure AssistEdit(OldSeminarRegHeader : Record "Seminar Registration Header") : Boolean;
     begin

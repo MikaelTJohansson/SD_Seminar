@@ -24,5 +24,9 @@ page 123456703 "Seminar Comment Sheet"
                 }
             }
         }
-    }    
+    }
+    trigger OnNewRecord(BelowxRec: Boolean)
+    begin
+        SetupNewLine;
+    end;    
 }
