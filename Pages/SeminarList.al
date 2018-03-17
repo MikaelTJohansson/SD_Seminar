@@ -1,8 +1,10 @@
 page 123456702 "Seminar List"
 // CSD1.00 - 2018-01-01 - D. E. Veloper
 // Chapter 5 - Lab 3-6
+// Chapter 8 - Lab 1-2
+// - Added Action
 {
-    Caption = 'Seminar List';
+    Caption='Seminar List';
     PageType = List;
     SourceTable = Seminar;
     Editable = false;
@@ -62,7 +64,40 @@ page 123456702 "Seminar List"
                     PromotedIsBig = true;
                     PromotedOnly = true;
                 }
+                // >> Lab 8-2
+                action("Ledger Entries")
+                {
+                    RunObject=page "Seminar Ledger Entries";
+                    RunPageLink="Seminar No."=field("No.");
+                    Promoted=true;
+                    PromotedCategory=Process;
+                    ShortcutKey="Ctrl+F7";
+                    Image=WarrantyLedger;
+                }
+                action("&Registrations")
+                {
+                    RunObject=page "Seminar Registration List";
+                    RunPageLink="Seminar No."=field("No.");
+                    Image=Timesheet;
+                    Promoted=true;
+                    PromotedCategory=Process;
+                }
+                // << Lab 8-2
             }
         }
+        // >> Lab 8-2
+        area(Processing)
+        {
+            action("Seminar Registration")
+            {
+                RunObject= page "Seminar Registration";
+                RunPageLink="Seminar No."=field("No.");
+                RunPageMode=Create;
+                Image=NewTimesheet;
+                Promoted=true;
+                PromotedCategory=New;
+            }
+        }
+        // << Lab 8-2
     }
 }

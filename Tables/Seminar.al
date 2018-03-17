@@ -9,16 +9,15 @@ table 123456701 Seminar
         field(10; "No."; Code[20])
         {
             Caption = 'No.';
-
-            trigger OnValidate();
-            begin
-                if("Search Name" = UpperCase(xRec.Name)) or("Search Name" = '') then
-                    "Search Name" := Name;
-            end;
         }
         field(20; Name; Text[50])
         {
             Caption = 'Name';
+            trigger OnValidate();
+            begin
+                if("Search Name" = UpperCase(xRec.Name)) or("Search Name" = '') then
+                    "Search Name" := Name;
+            end;            
         }
         field(30; "Seminar Duration"; Decimal)
         {

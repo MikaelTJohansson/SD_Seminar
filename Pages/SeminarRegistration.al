@@ -171,4 +171,3 @@ page 123456710 "Seminar Registration"
         }
     }
 }
-
