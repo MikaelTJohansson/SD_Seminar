@@ -1,13 +1,12 @@
-page 123456722 "Seminar Registers" 
-
+page 123456722 "Seminar Registers"
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+// Chapter 7 - Lab 2-11
 {
-    Caption = 'Seminar Registers';
     PageType = List;
     SourceTable = "Seminar Register";
-    Editable = false;
-    UsageCategory = Lists;
-
-
+    Caption='Seminar Registers';
+    Editable=false;
+    UsageCategory=Lists;
 
     layout
     {
@@ -20,7 +19,7 @@ page 123456722 "Seminar Registers"
                 }
                 field("Creation Date";"Creation Date")
                 {
-                }       
+                }
                 field("User ID";"User ID")
                 {
                 }
@@ -38,6 +37,9 @@ page 123456722 "Seminar Registers"
                 }
             }
         }
+        area(factboxes)
+        {
+        }
     }
 
     actions
@@ -47,7 +49,7 @@ page 123456722 "Seminar Registers"
             action("Seminar Ledgers")
             {
                 Image=WarrantyLedger;
-                RunObject=codeunit "Seminar Reg.-Show Ledger";
+                RunObject=codeunit SeminarRegShowLedger;
             }
         }
     }

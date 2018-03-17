@@ -1,5 +1,7 @@
 table 123456718 "Posted Seminar Reg. Header"
 {
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+// Chapter 7 - Lab 3-1
     Caption = 'Posted Seminar Reg. Header';
 
     Fields
@@ -141,17 +143,18 @@ table 123456718 "Posted Seminar Reg. Header"
             Caption='User Id';
             TableRelation=User;
             ValidateTableRelation=false;
-        }
-        field(30;"Source Code";Code[10])
-        {
-            Caption='Source Code';
-            TableRelation="Source Code";
+            
             trigger OnLookup();
             var
                 UserMgt : Codeunit "User Management";
             begin
                 UserMgt.LookupUserID("User Id");
             end;
+        }
+        field(30;"Source Code";Code[10])
+        {
+            Caption='Source Code';
+            TableRelation="Source Code";
         }
     }
 

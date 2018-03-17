@@ -17,6 +17,10 @@ tableextension 123456700 ResourceExt extends Resource
         {
             Caption = 'Maximum Participants';
         }
+        field(123456702;"Quantity Per Day";Integer)
+        {
+            Caption = 'Quantity Per Day';
+        }
     }
 }
 

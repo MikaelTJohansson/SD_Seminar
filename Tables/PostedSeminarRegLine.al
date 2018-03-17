@@ -1,5 +1,7 @@
 table 123456719 "Posted Seminar Reg. Line"
 {
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+// Chapter 7 - Lab 3-3
     Caption='Posted Seminar Reg. Line';
 
     fields

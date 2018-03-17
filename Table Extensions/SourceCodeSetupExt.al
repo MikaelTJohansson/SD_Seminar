@@ -1,24 +1,15 @@
-pageextension 123456702 SourceCodeSetupExt extends "Source Code Setup"
-//CSD1.00 2018-03-16 - Mikael Johansson
-//Chapter 7  Lab 1-7
-//Added new fields
-//Seminar
-
+tableextension 123456701 SourceCodeSetupExt extends "Source Code Setup"
+// CSD1.00 - 2012-06-15 - D. E. Veloper
+// Chapter 7 - Lab 1-7
+// -	Added new fields:
+// -	Seminar
 {
-    layout
+    fields
     {
-        addafter("Cost Accounting")
+        field(123456700;Seminar;Code[10])
         {
-            group(SeminarGroup)
-            {
-                Caption='Seminar';
-            }
-        }
-        addfirst(SeminarGroup)
-        {
-            field(Seminar;Seminar)
-            {
-            }
+            Caption='Seminar';
+            TableRelation="Source Code";
         }
     }
 }

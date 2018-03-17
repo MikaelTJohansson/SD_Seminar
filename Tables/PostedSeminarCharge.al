@@ -1,5 +1,8 @@
 table 123456721 "Posted Seminar Charge"
 {
+    // CSD1.00 - 2018-01-01 - D. E. Veloper
+    //   Chapter 7 - Lab 3-4
+    //     - Created new table
     Caption='Seminar Charge';
 
     fields

@@ -64,5 +64,9 @@ table 123456733 "Seminar Register"
         {
         }
     }
+
+    fieldgroups
+    {
+    }
 }
 

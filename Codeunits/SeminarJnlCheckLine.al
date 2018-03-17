@@ -1,4 +1,6 @@
 codeunit 123456731 "Seminar Jnl.-Check Line"
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+// Chapter 7 - Lab 2-1
 {
     TableNo="Seminar Journal Line";
 
@@ -14,17 +16,17 @@ codeunit 123456731 "Seminar Jnl.-Check Line"
         AllowPostingTo : Date;
         ClosingDateTxt : Label 'cannot be a closing date.';
         PostingDateTxt : label 'is not within your range of allowed posting dates.';
-
-procedure RunCheck(var SemJnlLine : Record "Seminar Journal Line");
+procedure RunCheck(var SeminarJournalLine : Record "Seminar Journal Line");
 var
     myInt : Integer;
 begin
-    with SemJnlLine do begin
-        if Emptyline then
-        exit;
-        TESTFIELD("Posting Date");
-        TESTFIELD("Instructor Resource No.");
-        TESTFIELD("Seminar No.");
+    With SeminarJournalLine do begin
+        if EmptyLine then
+         exit;
+
+        TestField("Posting Date");
+        TestField("Instructor Resource No.");
+        TestField("Seminar No.");
 
         case "Charge Type" of
             "Charge Type"::Instructor:
@@ -33,12 +35,13 @@ begin
             TestField("Room Resource No.");
             "Charge Type"::Participant:
             TestField("Participant Contact No.");
-            end;
-                if Chargeable then
+        end;
+
+        if Chargeable then
             TestField("Bill-to Customer No.");
 
         if "Posting Date" = ClosingDate("Posting Date") then
-            FIELDERROR("Posting Date",ClosingDateTxt);
+            FieldERROR("Posting Date",ClosingDateTxt);
 
         if (AllowPostingFrom = 0D) and (AllowPostingTo = 0D) then begin
             if UserId <> '' then
@@ -60,7 +63,7 @@ begin
 
         if ("Document Date" <> 0D) then
             if ("Document Date" = CLOSINGDATE("Document Date")) then
-            FIELDERROR("Document Date",PostingDateTxt);
-    end;
-end;
+            FieldERROR("Document Date",PostingDateTxt);
+    end;    
+end;        
 }

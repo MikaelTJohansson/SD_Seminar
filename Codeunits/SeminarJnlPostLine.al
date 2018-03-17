@@ -1,4 +1,6 @@
 codeunit 123456732 "Seminar Jnl.-Post Line"
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+// Chapter 7 - Lab 2-2
 {
     TableNo = "Seminar Journal Line";
 
@@ -6,28 +8,31 @@ codeunit 123456732 "Seminar Jnl.-Post Line"
     begin
         RunWithCheck(Rec);
     end;
-    
+
     var
-        SeminarJnlLine : Record "Seminar Journal Line";
-        SeminarLedgerEntry : Record "Seminar Ledger Entry";
-        SeminarRegister : Record "Seminar Register";
-        SeminarJnlCheckLine : Codeunit "Seminar Jnl.-Check Line";
-        NextEntryNo : Integer;
-procedure RunWithCheck(var SeminarJnLine2 : Record "Seminar Journal Line");
-var
-    myInt : Integer;
-begin
-    with SeminarJnLine2 do begin
-        SeminarJnlLine:=SeminarJnLine2;
-        Code();
-        SeminarJnLine2:=SeminarJnlLine;
+        SeminarJnlLine: Record "Seminar Journal Line";
+        SeminarLedgerEntry: Record "Seminar Ledger Entry";
+        SeminarRegister: Record "Seminar Register";
+        SeminarJnlCheckLine: Codeunit "Seminar Jnl.-Check Line";
+        NextEntryNo: Integer;
+
+    procedure RunWithCheck(var SeminarJnLine2: Record "Seminar Journal Line");
+    var
+        myInt: Integer;
+    begin
+        with SeminarJnLine2 do
+        begin
+            SeminarJnlLine := SeminarJnLine2;
+            Code();
+            SeminarJnLine2 := SeminarJnlLine;
+        end;
     end;
-end;
-local procedure Code();
-var
-    myInt : Integer;
-begin
-    with SeminarJnlLine do
+
+    local procedure Code();
+    var
+        myInt: Integer;
+    begin
+        with SeminarJnlLine do
         begin
             if EmptyLine then
                 exit;
@@ -45,7 +50,7 @@ begin
                 "Document Date" := "Posting Date";
 
             if SeminarRegister."No." = 0 then begin
-                SeminarRegister.LOCKTABLE;
+                SeminarRegister.LOCKTable;
                 if(not SeminarRegister.FINDLAST) or(SeminarRegister."To Entry No." <> 0) then begin
                     SeminarRegister.INIT;
                     SeminarRegister."No." := SeminarRegister."No." + 1;
@@ -90,7 +95,7 @@ begin
             SeminarLedgerEntry."Posting No. Series" := "Posting No. Series";
             SeminarLedgerEntry."User ID" := USERID;
             SeminarLedgerEntry."Entry No." := NextEntryNo;
-            SeminarLedgerEntry.INSERT;
+            SeminarLedgerEntry.insert;
             NextEntryNo := NextEntryNo + 1;
         end;
     end;
