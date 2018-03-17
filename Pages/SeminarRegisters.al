@@ -49,7 +49,7 @@ page 123456722 "Seminar Registers"
             action("Seminar Ledgers")
             {
                 Image=WarrantyLedger;
-                RunObject=codeunit "Seminar-Post";
+                RunObject=codeunit SeminarRegShowLedger;
             }
         }
     }

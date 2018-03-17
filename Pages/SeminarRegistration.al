@@ -155,19 +155,31 @@ page 123456710 "Seminar Registration"
         {
             action("&Navigate")
             {
-                Caption='&Navigate';
-                Image=Navigate;
-                Promoted=true;
-                PromotedCategory=Process;
+                Caption = '&Navigate';
+                Image = Navigate;
+                Promoted = true;
+                PromotedCategory = Process;
 
                 trigger OnAction();
                 var
-                    Navigate : page Navigate;
+                    Navigate: page Navigate;
                 begin
-                    Navigate.SetDoc("Posting Date","No.");
+                    Navigate.SetDoc("Posting Date", "No.");
                     Navigate.RUN;
                 end;
+            }
+
+            action("&Post")
+            {
+                Caption = '&Post';
+                Image = PostDocument;
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                ShortcutKey = F9;
+                RunObject = codeunit "Seminar-Post (Yes/No)";
             }
         }
     }
 }
+
