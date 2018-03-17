@@ -65,4 +65,22 @@ codeunit 123456739 EventSubscriptions
             end;
         end;
     end;
+
+    [EventSubscriber(ObjectType::Page, 344, 'OnAfterNavigateShowRecords', '', true, true)]
+    local procedure ExtendOnAfterNavigateShowRecords
+    (TableID: Integer;
+    DocNoFilter: Text;
+    PostingDateFilter: Text;
+    ItemTrackingSearch: Boolean);
+    var
+        SeminarLedgerEntry: record "Seminar Ledger Entry";
+        PostedSeminarRegHeader: record "Posted Seminar Reg. Header";
+    begin
+        case TableID of
+            Database::"Posted Seminar Reg. Header" :
+            Page.Run(0, PostedSeminarRegHeader);
+                Database::"Seminar Ledger Entry" :
+            Page.Run(0, SeminarLedgerEntry);
+        end;
+    end;
 }
